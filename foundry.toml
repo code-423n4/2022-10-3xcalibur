@@ -1,0 +1,25 @@
+[profile.default]
+src = 'contracts'
+test = 'test'
+out = 'out'
+libs = ['lib']
+solc-version = '0.8.11'
+remappings = [
+    'forge-std/=lib/forge-std/src/',
+    '@openzeppelin/=node_modules/@openzeppelin/',
+    '@core/=contracts/core/',
+    '@solmate/=node_modules/solmate/src/'
+    ]
+eth_rpc_url = "http://127.0.0.1:8545"
+libraries = []
+#cache = false
+force = false
+optimizer = true
+optimizer_runs = 200
+verbosity = 0
+#auto_detect_solc = true
+fuzz_runs = 2048
+ffi = false
+
+
+
