@@ -7,9 +7,7 @@
 - Starts October 14, 2022 20:00 UTC
 - Ends October 19, 2022 20:00 UTC
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
-
-## Scope
+## Bounty Scope
 
 The following changes makes up the scope of the **3xcalibur 10-2022** contest:
 - Changed the whitelisting mechanism in [Voter.sol](contracts/periphery/Voter.sol)
