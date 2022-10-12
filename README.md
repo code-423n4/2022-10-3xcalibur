@@ -11,10 +11,10 @@
 
 The following changes makes up the scope of the **3xcalibur 10-2022** contest:
 - Changed the whitelisting mechanism in [Voter.sol](contracts/periphery/Voter.sol)
-- Changed the fee rate for stable and variable swaps in [SwapFactory.sol](contracts/core/SwapFactory.sol) and [SwapPair.sol](contracts/core/SwapPair.sol)
+- Changed the fee rate for stable and variable swaps in [SwapFactory.sol](contracts/Core/SwapFactory.sol) and [SwapPair.sol](contracts/Core/SwapPair.sol)
 - Allow to change emission strategy every epoch (26 weeks) in [Minter.sol](contracts/periphery/Minter.sol)
 - Added an optional boost to the global weekly emission amount in [Minter.sol](contracts/periphery/Minter.sol)
-- Added the [Multiswap.sol](contracts/core/Multiswap.sol) contract to allow for swaps targeting multiple tokens at once
+- Added the [Multiswap.sol](contracts/periphery/Multiswap.sol) contract to allow for swaps targeting multiple tokens at once
 - Corrected rewards calculation [Bribe.sol](contracts/periphery/Bribe.sol) and [Gauge.sol](contracts/periphery/Gauge.sol)
 
 ## Contracts
@@ -25,8 +25,8 @@ The following changes makes up the scope of the **3xcalibur 10-2022** contest:
 |[contracts/periphery/Bribe.sol](contracts/periphery/Bribe.sol)|351|1|3|-|
 |[contracts/periphery/Voter.sol](contracts/periphery/Voter.sol)|298|1|9
 |[contracts/periphery/Gauge.sol](contracts/periphery/Gauge.sol)|442|1|6|
-|[contracts/core/SwapPair.sol](contracts/core/SwapPair.sol)|427|1|3|
-|[contracts/core/SwapFactory.sol](contracts/core/SwapFactory.sol)|59|0|0|
+|[contracts/Core/SwapPair.sol](contracts/Core/SwapPair.sol)|427|1|3|
+|[contracts/Core/SwapFactory.sol](contracts/Core/SwapFactory.sol)|59|0|0|
 |[contracts/periphery/Minter.sol](contracts/periphery/Minter.sol)|95|2|4|
 |[contracts/periphery/Multiswap.sol](contracts/periphery/Multiswap.sol)|76|0|0|
 |Total in scope|1748|3|29|
