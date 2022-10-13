@@ -1,4 +1,5 @@
 # 3xcalibur contest details
+
 - $46,100 USDC main award pot
 - $3,900 USDC gas optimization award pot
 - Join [C4 Discord](https://discord.gg/code4rena) to register
@@ -10,6 +11,7 @@
 ## Bounty Scope
 
 The following changes makes up the scope of the **3xcalibur 10-2022** contest:
+
 - Changed the whitelisting mechanism in [Voter.sol](contracts/periphery/Voter.sol)
 - Changed the fee rate for stable and variable swaps in [SwapFactory.sol](contracts/Core/SwapFactory.sol) and [SwapPair.sol](contracts/Core/SwapPair.sol)
 - Allow to change emission strategy every epoch (26 weeks) in [Minter.sol](contracts/periphery/Minter.sol)
@@ -69,7 +71,28 @@ $ npx hardhat run ./scripts/deploy.ts [--network <network>]
 
 Deployed addresses will be in `./scipts/config/<network>.json`
 
-## Contact Us:
+## Tests
+
+copy-paste the relevant contracts addresses from `./scipts/config/<network>.json` into the test files.
+
+```bash
+npm install @openzeppelin/contracts
+forge install foundry-rs/forge-std --no-commit
+```
+
+then call
+
+```bash
+forge test --force
+```
+
+or to run a particular test contract:
+
+```bash
+forge test --force --match-contract <contractName>
+```
+
+## Contact Us
 
 *Xen Discord*: 🗡禅🗡#0369  
 *Fly Discord*: flyjgh#0741  
