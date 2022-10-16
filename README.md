@@ -73,7 +73,7 @@ Deployed addresses will be in `./scipts/config/<network>.json`
 
 ## Tests
 
-The test suite uses the (foundry)[https://book.getfoundry.sh/] framework.  
+The test suite uses the [foundry](https://book.getfoundry.sh/) framework.  
 
 to install foundry, run:
 
