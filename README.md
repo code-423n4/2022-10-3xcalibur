@@ -79,16 +79,20 @@ to install foundry, run:
 
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
+foundryup
 ```
 
 to run the test files, first install the dependencies:
 
 ```bash
-npm install @openzeppelin/contracts
+npm install
 forge install foundry-rs/forge-std --no-commit
 forge install transmissions11/solmate --no-commit
 ```
 
+Due to an issue with naming in our codebase, you'll need to manually rename [contracts/Core](contracts/Core) to contracts/core.  
+Thanks for your understanding.
+  
 Launch a forked blockchain instance at port `http://127.0.0.1:8545/`:
 
 ```bash
