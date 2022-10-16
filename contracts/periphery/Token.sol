@@ -23,6 +23,7 @@ contract Token {
 
     // No checks as its meant to be once off to set minting rights to BaseV1 Minter
     function setMinter(address _minter) external {
+        require(_minter != address(0));
         require(msg.sender == minter);
         minter = _minter;
     }

@@ -38,6 +38,10 @@ contract VotingDist {
     address public depositor;
 
     constructor(address _voting_escrow) {
+        require(
+            _voting_escrow != address(0),
+            "VotingDist: zero address provided in constructor"
+        );
         uint _t = block.timestamp / WEEK * WEEK;
         start_time = _t;
         last_token_time = _t;

@@ -22,6 +22,7 @@ contract Gauge {
 
     uint internal constant DURATION = 7 days; // rewards are released over 7 days
     uint internal constant PRECISION = 10 ** 18;
+    uint internal constant MAX_REWARD_TOKENS = 16;
 
     // default snx staking contract implementation
     mapping(address => uint) public rewardRate;
@@ -81,6 +82,13 @@ contract Gauge {
     event ClaimRewards(address indexed from, address indexed reward, uint amount);
 
     constructor(address _stake, address _bribe, address  __ve, address _voter) {
+        require(
+            _stake != address(0) &&
+            _bribe != address(0) &&
+            __ve != address(0) &&
+            _voter != address(0),
+            "Gauge: zero address provided in constructor"
+        );
         stake = _stake;
         bribe = _bribe;
         _ve = __ve;
@@ -527,6 +535,12 @@ contract Gauge {
     function notifyRewardAmount(address token, uint amount) external lock {
         require(token != stake);
         require(amount > 0);
+        if (!isReward[token]) {
+            require(IVoter(voter).isReward(address(this), token), "rewards tokens must be whitelisted");
+            require(rewards.length < MAX_REWARD_TOKENS, "too many rewards tokens");
+            isReward[token] = true; 
+            rewards.push(token);
+        }
         if (rewardRate[token] == 0) _writeRewardPerTokenCheckpoint(token, 0, block.timestamp);
         (rewardPerTokenStored[token], lastUpdateTime[token]) = _updateRewardPerToken(token, type(uint).max, true);
         _claimFees();
@@ -545,10 +559,6 @@ contract Gauge {
         uint balance = IERC20(token).balanceOf(address(this));
         require(rewardRate[token] <= balance / DURATION, "Provided reward too high");
         periodFinish[token] = block.timestamp + DURATION;
-        if (!isReward[token]) {
-            isReward[token] = true; 
-            rewards.push(token);
-        }
 
         emit NotifyReward(msg.sender, token, amount);
     }

@@ -117,6 +117,10 @@ contract VotingEscrow is IERC721, IERC721Metadata {
     constructor(
         address token_addr
     ) {
+        require(
+            token_addr != address(0),
+            "VotingEscrow: zero address provided in constructor"
+        );
         token = token_addr;
         voter = msg.sender;
         point_history[0].blk = block.number;

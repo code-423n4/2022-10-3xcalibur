@@ -13,7 +13,7 @@ interface IVoter {
     function createSwapGauge(address pair) external returns (address);
     function factory() external view returns (address);
     function listing_fee() external view returns (uint);
-    function whitelist(address token, uint tokenId) external;
+    function whitelist(address token) external;
     function isWhitelisted(address token) external view returns (bool);
     function bribeFactory() external view returns (address);
     function bribes(address gauge) external view returns (address);
@@ -22,7 +22,7 @@ interface IVoter {
     function allGauges(uint index) external view returns (address);
     function vote(uint tokenId, address[] calldata gaugeVote, uint[] calldata weights) external;
     function lastVote(uint tokenId) external view returns(uint);
-    //function gaugeVote(uint tokenId) external view returns (address[] memory);
+    function gaugeVote(uint tokenId) external view returns (address[] memory);
     function votes(uint tokenId, address gauge) external view returns (uint);
     function weights(address gauge) external view returns (uint);
     function usedWeights(uint tokenId) external view returns (uint);
@@ -36,5 +36,12 @@ interface IVoter {
     function initialize(address minter) external;
     function minter() external view returns (address);
     function claimRewards(address[] memory gauges, address[][] memory rewards) external;
-
+    function admin() external view returns (address);
+    function isReward(address gauge, address token) external view returns (bool);
+    function isBribe(address bribe, address token) external view returns (bool);
+    function isLive(address gauge) external view returns (bool);
+    function setBribe(address bribe, address token, bool status) external;
+    function setReward(address gauge, address token, bool status) external;
+    function killGauge(address _gauge) external;
+    function reviveGauge(address _gauge) external;
 }

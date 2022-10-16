@@ -19,5 +19,8 @@ interface ISwapPair {
     function approve(address _spender, uint _value) external returns (bool);
     function reserve0() external view returns (uint);
     function reserve1() external view returns (uint);
-
+    function current(address tokenIn, uint amountIn) external view returns (uint amountOut);
+    function currentCumulativePrices() external view returns (uint reserve0Cumulative, uint reserve1Cumulative, uint blockTimestamp);
+    function sample(address tokenIn, uint amountIn, uint points, uint window) external view returns (uint[] memory);
+    function quote(address tokenIn, uint amountIn, uint granularity) external view returns (uint amountOut);
 }

@@ -34,7 +34,7 @@ contract SwapPair {
     address public immutable token0;
     address public immutable token1;
     address public immutable fees;
-    address immutable factory;
+    address public immutable factory;
     uint public immutable fee;
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
@@ -161,7 +161,7 @@ contract SwapPair {
         if (_ratio > 0) {
             index0 += _ratio;
         }
-        emit Fees(msg.sender, amount, 0);
+        emit Fees(msg.sender, _feeIncrease, 0);
     }
 
     // Accrue fees on token1
@@ -175,7 +175,7 @@ contract SwapPair {
         if (_ratio > 0) {
             index1 += _ratio;
         }
-        emit Fees(msg.sender, 0, amount);
+        emit Fees(msg.sender, 0, _feeIncrease);
     }
 
     // this function MUST be called on any balance changes, otherwise can be used to infinitely claim fees
@@ -476,6 +476,11 @@ contract SwapPair {
 
     function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external {
         require(deadline >= block.timestamp, 'SwapPair: EXPIRED');
+        require(v == 27 || v == 28, 'SwapPair: INVALID_SIGNATURE');
+        require(
+            s < 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A1,
+            'SwapPair: INVALID_SIGNATURE'
+        );
         DOMAIN_SEPARATOR = keccak256(
             abi.encode(
                 keccak256('EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)'),

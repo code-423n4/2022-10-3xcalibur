@@ -14,6 +14,7 @@ contract Bribe {
 
     uint public constant DURATION = 7 days; // rewards are released over 7 days
     uint public constant PRECISION = 10 ** 18;
+    uint public constant MAX_REWARD_TOKENS = 16; // max number of reward tokens that can be added
 
     // default snx staking contract implementation
     mapping(address => uint) public rewardRate;
@@ -421,6 +422,12 @@ contract Bribe {
     // used to notify a gauge/bribe of a given reward, this can create griefing attacks by extending rewards
     function notifyRewardAmount(address token, uint amount) external lock {
         require(amount > 0);
+        if (!isReward[token]) {
+            require(IVoter(voter).isBribe(address(this), token), "rewards tokens must be whitelisted");
+            require(rewards.length < MAX_REWARD_TOKENS, "too many rewards tokens");
+            isReward[token] = true; 
+            rewards.push(token);
+        }
 
         if (rewardRate[token] == 0) _writeRewardPerTokenCheckpoint(token, 0, block.timestamp);
         (rewardPerTokenStored[token], lastUpdateTime[token]) = _updateRewardPerToken(token, type(uint).max, true);
@@ -439,10 +446,6 @@ contract Bribe {
         uint balance = IERC20(token).balanceOf(address(this));
         require(rewardRate[token] <= balance / DURATION, "Provided reward too high");
         periodFinish[token] = block.timestamp + DURATION;
-        if (!isReward[token]) {
-            isReward[token] = true;
-            rewards.push(token);
-        }
 
         emit NotifyReward(msg.sender, token, amount);
     }

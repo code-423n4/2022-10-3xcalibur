@@ -28,6 +28,11 @@ contract Router {
     }
 
     constructor(address _factory, address _weth) {
+        require(
+            _factory != address(0) &&
+            _weth != address(0),
+            "Router: zero address provided in constructor"
+        );
         factory = _factory;
         pairCodeHash = ISwapFactory(_factory).pairCodeHash();
         weth = IWETH(_weth);
@@ -275,25 +280,25 @@ contract Router {
         _safeTransferETH(to, amountETH);
     }
 
-    function removeLiquidityWithPermit(
-        address tokenA,
-        address tokenB,
-        bool stable,
-        uint liquidity,
-        uint amountAMin,
-        uint amountBMin,
-        address to,
-        uint deadline,
-        bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountA, uint amountB) {
-        address pair = pairFor(tokenA, tokenB, stable);
-        {
-            uint value = approveMax ? type(uint).max : liquidity;
-            ISwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
-        }
+    // function removeLiquidityWithPermit(
+    //     address tokenA,
+    //     address tokenB,
+    //     bool stable,
+    //     uint liquidity,
+    //     uint amountAMin,
+    //     uint amountBMin,
+    //     address to,
+    //     uint deadline,
+    //     bool approveMax, uint8 v, bytes32 r, bytes32 s
+    // ) external returns (uint amountA, uint amountB) {
+    //     address pair = pairFor(tokenA, tokenB, stable);
+    //     {
+    //         uint value = approveMax ? type(uint).max : liquidity;
+    //         ISwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
+    //     }
 
-        (amountA, amountB) = removeLiquidity(tokenA, tokenB, stable, liquidity, amountAMin, amountBMin, to, deadline);
-    }
+    //     (amountA, amountB) = removeLiquidity(tokenA, tokenB, stable, liquidity, amountAMin, amountBMin, to, deadline);
+    // }
 
     function removeLiquidityETHWithPermit(
         address token,

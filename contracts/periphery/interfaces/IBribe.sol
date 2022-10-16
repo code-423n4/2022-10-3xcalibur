@@ -9,4 +9,5 @@ interface IBribe {
     function getRewardForOwner(uint tokenId, address[] memory tokens) external;
     function balanceOf(uint tokenId) external view returns (uint);
     function earned(address token, uint tokenId) external view returns (uint);
+    function batchRewardPerToken(address token, uint maxRuns) external;
 }

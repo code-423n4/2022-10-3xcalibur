@@ -35,11 +35,17 @@ contract Voter {
     mapping(uint => uint) public usedWeights;  // nft => total voting weight of user
     mapping(uint => uint) public lastVote; // nft id => timestamp of last vote 
     mapping(address => bool) public isGauge;
+    mapping(address => bool) public isLive; // gauge => status (live or not)
+
     mapping(address => bool) public isWhitelisted;
+    mapping(address => mapping(address => bool)) public isReward;
+    mapping(address => mapping(address => bool)) public isBribe;
+
 
     mapping(address => uint) public claimable;
     uint internal index;
     mapping(address => uint) internal supplyIndex;
+    address public admin;
 
     event GaugeCreated(address indexed gauge, address creator, address indexed bribe, address indexed pair);
     event Voted(address indexed voter, uint tokenId, uint256 weight);
@@ -51,14 +57,29 @@ contract Voter {
     event Attach(address indexed owner, address indexed gauge, uint tokenId);
     event Detach(address indexed owner, address indexed gauge, uint tokenId);
     event Whitelisted(address indexed whitelister, address indexed token);
+    event GaugeKilled(address indexed gauge);
+    event GaugeRevived(address indexed gauge);
+
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Voter: only admin");
+        _;
+    }
 
     constructor(address __ve, address _factory, address  _gauges, address _bribes) {
+        require(
+            __ve != address(0) &&
+            _factory != address(0) &&
+            _gauges != address(0) &&
+            _bribes != address(0),
+            "Voter: zero address provided in constructor"
+        );
         _ve = __ve;
         factory = _factory;
         base = IVotingEscrow(__ve).token();
         gaugeFactory = _gauges;
         bribeFactory = _bribes;
         minter = msg.sender;
+        admin = msg.sender;
     }
 
     // simple re-entrancy check
@@ -87,6 +108,32 @@ contract Voter {
         return (IERC20(base).totalSupply() - IERC20(_ve).totalSupply()) / 10000;
     }
 
+    function setAdmin(address _admin) external onlyAdmin {
+        require(_admin != address(0), "zero address");
+        admin = _admin;
+    }
+
+    function setReward(address _gauge, address _token, bool _status) external onlyAdmin {
+        isReward[_gauge][_token] = _status;
+    }
+
+    function setBribe(address _bribe, address _token, bool _status) external onlyAdmin {
+        isBribe[_bribe][_token] = _status;
+    }
+
+    function killGauge(address _gauge) external onlyAdmin {
+        require(isLive[_gauge], "gauge is not live");
+        isLive[_gauge] = false;
+        claimable[_gauge] = 0;
+        emit GaugeKilled(_gauge);
+    }
+
+    function reviveGauge(address _gauge) external onlyAdmin {
+        require(!isLive[_gauge], "gauge is live");
+        isLive[_gauge] = true;
+        emit GaugeRevived(_gauge);
+    }
+
     // @param _tokenId the ID of the veNFT to reset votes for
     function reset(uint _tokenId) external { // OR msg.sender == votingescrow when withdrawing
         require(_activePeriod() > lastVote[_tokenId], "voted recently");
@@ -103,19 +150,19 @@ contract Voter {
         for (uint i = 0; i < _gaugeVoteCnt; i++) {
             address _gauge = _gaugeVote[i];
             uint256 _votes = votes[_tokenId][_gauge];
-            if (_votes != 0) {
-                _updateFor(_gauge);
-                weights[_gauge] -= _votes;
-                votes[_tokenId][_gauge] -= _votes;
-                if (_votes > 0) {
-                    IBribe(bribes[_gauge])._withdraw(uint256(_votes), _tokenId);
-                    _totalWeight += _votes;
-                } else {
-                    _totalWeight -= _votes;
+                if (_votes != 0) {
+                        _updateFor(_gauge);
+                        weights[_gauge] -= _votes;
+                        votes[_tokenId][_gauge] -= _votes;
+                        if (_votes > 0) {
+                            IBribe(bribes[_gauge])._withdraw(uint256(_votes), _tokenId);
+                            _totalWeight += _votes;
+                        } else {
+                            _totalWeight -= _votes;
+                        }
+                    emit Abstained(_tokenId, _votes);
                 }
-                emit Abstained(_tokenId, _votes);
             }
-        }
         totalWeight -= uint256(_totalWeight);
         usedWeights[_tokenId] = 0;
         delete gaugeVote[_tokenId];
@@ -185,17 +232,7 @@ contract Voter {
         _vote(tokenId, _gaugeVote, _weights);
     }
 
-    // TODO: decide on gauge whitelisting model
-    // @param _token the ERC20 token to whitelist
-    // @param _tokenId the ID of veNFT whitelisting
-    function whitelist(address _token, uint _tokenId) public {
-        if (_tokenId > 0) {
-            require(msg.sender == IVotingEscrow(_ve).ownerOf(_tokenId));
-            require(IVotingEscrow(_ve).balanceOfNFT(_tokenId) > listing_fee());
-        } else {
-            _safeTransferFrom(base, msg.sender, minter, listing_fee());
-        }
-
+    function whitelist(address _token) public onlyAdmin {
         _whitelist(_token);
     }
 
@@ -219,6 +256,12 @@ contract Voter {
         gauges[_pair] = _gauge;
         poolForGauge[_gauge] = _pair;
         isGauge[_gauge] = true;
+        isLive[_gauge] = true;
+        isReward[_gauge][_tokenA] = true;
+        isReward[_gauge][_tokenB] = true;
+        isReward[_gauge][base] = true;
+        isBribe[_bribe][_tokenA] = true;
+        isBribe[_bribe][_tokenB] = true;
         _updateFor(_gauge);
         allGauges.push(_gauge);
         emit GaugeCreated(_gauge, msg.sender, _bribe, _pair);
@@ -293,7 +336,9 @@ contract Voter {
             uint _delta = _index - _supplyIndex; // see if there is any difference that need to be accrued
             if (_delta > 0) {
                 uint _share = uint(_supplied) * _delta / 1e18; // add accrued difference for each supplied token
-                claimable[_gauge] += _share;
+                if (isLive[_gauge]) {
+                    claimable[_gauge] += _share;
+                }
             }
         } else {
             supplyIndex[_gauge] = index; // new users are set to the default global state

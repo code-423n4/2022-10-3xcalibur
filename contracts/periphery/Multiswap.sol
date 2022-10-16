@@ -9,6 +9,10 @@ contract Multiswap {
     address public immutable router;
 
     constructor(address _router) {
+        require(
+            _router != address(0),
+            "Multiswap: zero address provided in constructor"
+        );
         router = _router;
     }
 
@@ -48,11 +52,12 @@ contract Multiswap {
         } else {
             // Caller wants to multiswap a token
             require(_amount > 0, "no tokens sent");
-            IERC20(_token).transferFrom(msg.sender, address(this), _amount);
+            (bool transferFromSuccess) = IERC20(_token).transferFrom(msg.sender, address(this), _amount);
+            require(transferFromSuccess, "transferFrom failed");
             IERC20(_token).approve(router, _amount);
             for (uint i = 0; i < length; ++i) {
-                (bool success, bytes memory data) = router.call(_swapData[i]);
-                if (!success) revert ErrorSwapping(i);
+                (bool callSuccess, bytes memory data) = router.call(_swapData[i]);
+                if (!callSuccess) revert ErrorSwapping(i);
                 uint[] memory out = abi.decode(data, (uint[]));
                 amountsOut[i] = out[out.length - 1];
             }

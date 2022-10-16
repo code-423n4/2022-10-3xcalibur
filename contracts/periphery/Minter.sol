@@ -44,6 +44,13 @@ contract Minter {
         uint _weekly
     ) {
         initializer = msg.sender;
+        require(
+            __voter != address(0) &&
+            __ve != address(0) &&
+            __ve_dist != address(0) &&
+            _admin != address(0),
+            "Minter: zero address provided in constructor"
+        );
         admin = _admin;
         _token = underlying(IVotingEscrow(__ve).token());
         _voter = IVoter(__voter);
@@ -68,7 +75,7 @@ contract Minter {
         //     _ve.create_lock_for(amounts[i], lock, claimants[i]);
         // }
         initializer = address(0);
-        active_period = (block.timestamp - week) / week * week; // 
+        active_period = block.timestamp / week * week; // 
     }
 
     /// @param _decay: new value of emissions
@@ -77,12 +84,7 @@ contract Minter {
         require(block.timestamp >= last_epoch + 26 weeks, "must wait next period");
         decay = _decay;
         boost = _boost;
-        uint _lastEpoch;
-        _lastEpoch = last_epoch;
-        while (_lastEpoch + 26 weeks < block.timestamp) {
-            _lastEpoch += 26 weeks;
-        }
-        last_epoch = _lastEpoch;
+        last_epoch = block.timestamp + 26 weeks;
     }
 
     // calculate circulating supply as total token supply - locked supply

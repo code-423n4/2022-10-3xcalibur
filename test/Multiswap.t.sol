@@ -2,59 +2,40 @@
 pragma solidity 0.8.11;
 pragma experimental ABIEncoderV2;
 
-// Router address: 0x871ACbEabBaf8Bed65c22ba7132beCFaBf8c27B5
-// RouterUtil address: 0x6A59CC73e334b018C9922793d96Df84B538E6fD5
-// MultiSwap address: 0xC1e0A9DB9eA830c52603798481045688c8AE99C2
-
-import "forge-std/Test.sol";
+import "./BaseTest.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "./Interfaces.sol";
-import "../periphery/Multiswap.sol";
-import "../periphery/Router.sol";
-import "../periphery//interfaces/IRouter.sol";
+import "contracts/periphery/Multiswap.sol";
+import "contracts/periphery/Router.sol";
+import "contracts/periphery/interfaces/IRouter.sol";
 
 
+contract MultiswapTest is BaseTest {
 
-contract MultiswapTest is Test {
-
-    IERC20 usdc;
-    IERC20 dai;
-    uint256 f = 1e18;
-    Multiswap multi;
-    IFactory factory;
-    IRouter router;
-    address whale = 0x5777d92f208679DB4b9778590Fa3CAB3aC9e2168;
-    address weth = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-    
+    Multiswap _multiswap;
+    IRouter _router;
     
     receive() external payable {
     }
 
     function setUp() public {
-        // Deployed contracts
-        router = IRouter(0x00CAC06Dd0BB4103f8b62D280fE9BCEE8f26fD59);
-        multi = Multiswap(0xb007167714e2940013EC3bb551584130B7497E22);
-        usdc = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
-        dai = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-        factory = IFactory(0xAD2935E147b61175D5dc3A9e7bDa93B0975A43BA);
+        deployCoins();
+        deploy();
+        mintStables(address(this));
 
-        // Setup
-        vm.startPrank(whale);
-        uint maxDai = dai.balanceOf(whale);
-        uint maxUsdc = usdc.balanceOf(whale);
-        dai.transfer(address(this), maxDai);
-        usdc.transfer(address(this), maxUsdc);
-        vm.stopPrank();
+        // Deployed contracts
+        _router = IRouter(router);
+        _multiswap = Multiswap(multiswap);
+
         uint daiAmount = 100000 * 1e18;
         uint usdcAmount = 100000 * 1e6;
         uint ethAmount = 100 * 1e18;
-        vm.deal(address(this), ethAmount);
-        dai.approve(address(router), type(uint).max);
-        usdc.approve(address(router), type(uint).max);
+        dealETH(address(this), ethAmount);
+        DAI.approve(address(_router), type(uint).max);
+        USDC.approve(address(_router), type(uint).max);
 
-        router.addLiquidity(
-            address(dai),
-            address(usdc),
+        _router.addLiquidity(
+            address(DAI),
+            address(USDC),
             true,
             daiAmount,
             usdcAmount,
@@ -64,8 +45,8 @@ contract MultiswapTest is Test {
             block.timestamp
             );
 
-        router.addLiquidityETH{value: 10 ether}(
-            address(dai),
+        _router.addLiquidityETH{value: 10 ether}(
+            address(DAI),
             false,
             daiAmount,
             1,
@@ -74,8 +55,8 @@ contract MultiswapTest is Test {
             block.timestamp
             );
 
-        router.addLiquidityETH{value: 10 ether}(
-            address(usdc),
+        _router.addLiquidityETH{value: 10 ether}(
+            address(USDC),
             false,
             usdcAmount,
             1,
@@ -91,25 +72,24 @@ contract MultiswapTest is Test {
     uint[] weights;
     // should multiswap from DAI to ETH and USDT with a 50/50 split
     function test_multiswap_tokenToTokens() public {
-        //vm.startPrank(whale);
         uint256 daiToSwap = 1000 * 1e18;
         // 50%/50%
         weights.push(5000);
         weights.push(5000);
         uint256 amount1 = daiToSwap / 2;
         uint256 amount2 = daiToSwap / 2;
-        route memory route1 = route(address(dai), address(usdc), true);
-        route memory route2 = route(address(dai), address(weth), false);
+        route memory route1 = route(address(DAI), address(USDC), true);
+        route memory route2 = route(address(DAI), address(WETH), false);
         routes1.push(route1);
         routes2.push(route2);
         bytes memory data1 = abi.encodeWithSelector(Router.swapExactTokensForTokens.selector, amount1, 1, routes1, address(this), block.timestamp);
         bytes memory data2 = abi.encodeWithSelector(Router.swapExactTokensForETH.selector, amount2, 1, routes2, address(this), block.timestamp);
         swapData.push(data1);
         swapData.push(data2);
-        dai.approve(address(multi), daiToSwap);
-        emit log_named_address("router", multi.router());
-        uint[] memory amountsOut = multi.multiswap(
-            address(dai),
+        DAI.approve(address(_multiswap), daiToSwap);
+        emit log_named_address("_router", _multiswap.router());
+        uint[] memory amountsOut = _multiswap.multiswap(
+            address(DAI),
             daiToSwap,
             swapData,
             weights
@@ -134,8 +114,8 @@ contract MultiswapTest is Test {
         _weights.push(5000);
         emit log_named_uint("weights length", _weights.length);
         emit log_named_uint("balance", address(this).balance);
-        route memory route1 = route(address(weth), address(dai), false);
-        route memory route2 = route(address(weth), address(usdc), false);
+        route memory route1 = route(address(WETH), address(DAI), false);
+        route memory route2 = route(address(WETH), address(USDC), false);
         _routes1.push(route1);
         _routes2.push(route2);
         bytes memory data1 = abi.encodeWithSelector(Router.swapExactETHForTokens.selector, 1, _routes1, address(this), block.timestamp);
@@ -144,8 +124,8 @@ contract MultiswapTest is Test {
         _swapData.push(data2);
         emit log_named_uint("swapData length", _swapData.length);
 
-        emit log_named_address("router", multi.router());
-        uint[] memory amountsOut = multi.multiswap{value: ethToSwap}(
+        emit log_named_address("router", _multiswap.router());
+        uint[] memory amountsOut = _multiswap.multiswap{value: ethToSwap}(
             address(0),
             0,
             _swapData,
@@ -169,7 +149,7 @@ contract MultiswapTest is Test {
         data = abi.encodeWithSelector(Router.swapExactETHForTokens.selector, 1, _routes2, address(this), block.timestamp);
         __swapData.push(data);
         
-        uint[] memory amounts = multi.multiswap{value: 10 ether}(
+        uint[] memory amounts = _multiswap.multiswap{value: 10 ether}(
             address(0),
             0,
             __swapData,

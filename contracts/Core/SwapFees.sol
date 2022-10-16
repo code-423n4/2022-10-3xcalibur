@@ -11,6 +11,11 @@ contract SwapFees {
     address internal immutable token1; // Token1 of pair, saved localy and statically for gas optimization
 
     constructor(address _token0, address _token1) {
+        require(
+            _token0 != address(0) &&
+            _token1 != address(0),
+            "SwapFees: zero address provided in constructor"
+        );
         pair = msg.sender;
         token0 = _token0;
         token1 = _token1;

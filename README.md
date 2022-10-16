@@ -1,6 +1,7 @@
 # 3xcalibur contest details
-- $47,500 USDC main award pot
-- $2,500 USDC gas optimization award pot
+
+- $46,100 USDC main award pot
+- $3,900 USDC gas optimization award pot
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2022-10-3xcalibur-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
@@ -10,6 +11,7 @@
 ## Bounty Scope
 
 The following changes makes up the scope of the **3xcalibur 10-2022** contest:
+
 - Changed the whitelisting mechanism in [Voter.sol](contracts/periphery/Voter.sol)
 - Changed the fee rate for stable and variable swaps in [SwapFactory.sol](contracts/Core/SwapFactory.sol) and [SwapPair.sol](contracts/Core/SwapPair.sol)
 - Allow to change emission strategy every epoch (26 weeks) in [Minter.sol](contracts/periphery/Minter.sol)
@@ -69,7 +71,44 @@ $ npx hardhat run ./scripts/deploy.ts [--network <network>]
 
 Deployed addresses will be in `./scipts/config/<network>.json`
 
-## Contact Us:
+## Tests
+
+The test suite uses the (foundry)[https://book.getfoundry.sh/] framework.  
+
+to install foundry, run:
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+```
+
+to run the test files, first install the dependencies:
+
+```bash
+npm install @openzeppelin/contracts
+forge install foundry-rs/forge-std --no-commit
+forge install transmissions11/solmate --no-commit
+```
+
+Launch a forked blockchain instance at port `http://127.0.0.1:8545/`:
+
+```bash
+# example
+anvil -f https://arb1.arbitrum.io/rpc
+```
+
+then call
+
+```bash
+forge test --force
+```
+
+To get code coverage:
+
+```bash
+forge coverage
+```
+
+## Contact Us
 
 *Xen Discord*: 🗡禅🗡#0369  
 *Fly Discord*: flyjgh#0741  

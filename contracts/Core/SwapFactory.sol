@@ -8,6 +8,7 @@ contract SwapFactory {
     bool public isPaused;
     address public pauser;
     address public pendingPauser;
+    address public admin;
 
     mapping(address => mapping(address => mapping(bool => address))) public getPair;
     address[] public allPairs;
@@ -21,13 +22,22 @@ contract SwapFactory {
     uint internal _temp3;
 
     event PairCreated(address indexed token0, address indexed token1, bool stable, address pair, uint);
+    
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Voter: only admin");
+        _;
+    }
 
     constructor(address _feeCollector) {
+        require(
+            _feeCollector != address(0),
+            "SwapFactory: zero address provided in constructor"
+        );
         pauser = msg.sender;
-        isPaused = false;
         fee[true] = 369; // 0.0369% for stable swaps (hundredth of a basis point / 369/1000000)
         fee[false] = 2700; // 0.27% for vaiable swaps (hundredth of a basis point / 2700/1000000)
         feeCollector = _feeCollector;
+        admin = msg.sender;
     }
 
     function allPairsLength() external view returns (uint) {
@@ -47,6 +57,16 @@ contract SwapFactory {
     function setPause(bool _state) external {
         require(msg.sender == pauser);
         isPaused = _state;
+    }
+
+    function setFeeTier(bool _stable, uint _fee) external {
+        require(msg.sender == admin, "SwapFactory: only admin");
+        fee[_stable] = _fee;
+    }
+
+    function setAdmin(address _admin) external {
+        require(msg.sender == admin && _admin != address(0), "SwapFactory; wrong input parameters");
+        admin = _admin;
     }
 
     function pairCodeHash() external pure returns (bytes32) {
