@@ -1,7 +1,7 @@
 # 3xcalibur contest details
 
-- $46,100 USDC main award pot
-- $3,900 USDC gas optimization award pot
+- $47,500 USDC main award pot
+- $2,500 USDC gas optimization award pot
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2022-10-3xcalibur-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
