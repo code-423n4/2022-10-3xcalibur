@@ -92,7 +92,7 @@ The following changes makes up the scope of the **3xcalibur 10-2022** contest:
 ## Description
 
 **3xcalibur** is a decentralized exchange and liquidity protocol on Arbitrum nitro.  
-It is a fork of the Solidly protocol, which notably introduced $ x3y + y3x = k $ pools for concentrated stable-swaps, and improved on the Curve's emission mechanism.  
+It is a fork of the Solidly protocol, which notably introduced $x3y+y3x=k$ pools for concentrated stable-swaps, and improved on the Curve's emission mechanism.  
   
 We further improved on Solidly by allowing to use more complex emisson schedule strategies, added modifications to the governance mechanism, added convenience contracts to improve user experience, correcting bugs and redesigned tokenomics.  
 
