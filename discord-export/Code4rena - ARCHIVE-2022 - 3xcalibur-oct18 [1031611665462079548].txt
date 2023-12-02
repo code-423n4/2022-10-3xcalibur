@@ -1,0 +1,655 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-2022 / 3xcalibur-oct18
+==============================================================
+
+[10/17/2022 17:03] itsmetechjay (pinned)
+👋 Hello and welcome to the contest channel for the $50K USDC **3xcalibur** contest!
+
+📆 Contest opens Tuesday, 18 October 2022 20:00 (20:00 UTC) and runs through Sunday, 23 October 2022 20:00 (20:00 UTC) (5 days).
+
+Please give a warm welcome back to the 3xcalibur team, particularly @flyjgh, @xhexks,  @reentrant, @🗡0xlancelot🗡, and @Deleted User who will be available for questions either here in the channel or via DM.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+Contest Page: https://code4rena.com/contests/2022-10-3xcalibur-contest
+
+{Embed}
+https://code4rena.com/contests/2022-10-3xcalibur-contest
+Code4rena 3xcalibur contest
+$50,000 USDC
+18 October 2022—23 October 2022
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/C4-banner-7C19B.png
+
+{Reactions}
+❤️ (4) ⚔️ (6) LFG (3) 
+
+[10/17/2022 18:07] Deleted User
+semper ad meliora
+
+{Reactions}
+🥹 (7) 🗿 (4) ⚔️ (7) 
+
+[10/18/2022 18:35] kartoonjoy
+Pinned a message.
+
+
+[10/18/2022 20:10] thepicodes (pinned)
+**Automated Findings**
+
+C4udit: https://gist.github.com/Picodes/cf3f536df8cae4ed1136e6dfc8c5325a
+Improved C4udit: https://gist.github.com/Picodes/51789d48e3a3c9246a48bb490d688343
+
+{Reactions}
+👆 (2) thankyou (2) 
+
+[10/18/2022 20:20] itsmetechjay
+Pinned a message.
+
+
+[10/18/2022 20:21] itsmetechjay
+@🐺wardens - please note that c4audit output has been posted above and added to pinned posts. These are considered **publicly known issues** and are **not eligible for awards.**
+
+{Reactions}
+👍🏻 (6) 🔥 (3) C4Keycap (2) 
+
+[10/18/2022 21:28] saksham#7993
+These kinda reports will be OOS right?
+
+
+[10/18/2022 21:51] Ignacio#9604
+"not eligible for awards."
+
+
+[10/19/2022 06:39] 0xkitsune
+The findings that are identified in the c4udit report are considered public and wont count or be eligible for rewards. But automated reports are allowed, just as long as the quality of the report is high enough.
+
+{Reactions}
+👆 
+
+[10/19/2022 08:23] saksham#7993
+Thanks for the clarification guys
+
+
+[10/19/2022 11:58] .nalus
+Hey is any of the team members available for a dm?
+
+
+[10/19/2022 12:00] Deleted User
+going to open a private discord channel for individual messages to team in a bit
+
+{Reactions}
+🔥 
+
+[10/19/2022 12:00] Deleted User
+so it will be team + you @nalus
+
+
+[10/19/2022 12:01] .nalus
+great tnx
+
+
+[10/19/2022 12:01] Deleted User
+give me like 30 mins
+
+{Reactions}
+👍 
+
+[10/19/2022 12:06] .nalus
+I mean its just a small thing you dont need to open chat just because of this 😄
+
+
+[10/19/2022 12:07] soosh4618
+where can I find Solidly contracts?
+
+
+[10/19/2022 12:34] 0xmatt#3768
+Just to confirm, from the scope section: "The following changes makes up the scope of the 3xcalibur 10-2022 contest:"
+Does this mean only the changed areas (e.g. whitelisting mechanism in Voter.sol) are in scope, or the full named contracts on the files in scope list?
+
+
+[10/19/2022 12:44] .mathieu
+What are some possible values for the `boost` variable in the Minter.sol file ?
+Doesn't seem very clear to me
+
+
+[10/19/2022 13:24] illilli000
+100% of the files from the scope table are in scope
+
+{Reactions}
+👍 (4) 
+
+[10/19/2022 15:02] soosh4618
+is there any documentation? Don't see any links on the contest page
+
+
+[10/19/2022 15:09] 0xmatt#3768
+Lots looks based on Uniswapv2, might be some Curve in there but haven't looked yet.
+
+
+[10/19/2022 15:14] dsubd1subd2
+it's Solidly fork with some improvements + a bit of synthetix staking contract logic as I understand correctly and the only docs I found is on their website: 3xcalibur.com
+
+
+[10/19/2022 15:36] pedroais
+Yes I need more docs
+
+
+[10/19/2022 15:38] soosh4618
+Thank you, was looking for this. https://3six9innovatio.gitbook.io/documentation/3six9-products/the-3xcalibur-ecosystem
+
+{Embed}
+https://3six9innovatio.gitbook.io/documentation/3six9-products/the-3xcalibur-ecosystem
+The 3xcalibur Ecosystem
+The 3xcalibur Ecosytem refers to the group of future products we will integrate with The 3xcalibur Protocol.
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/https%253A%252F%252F2688442826-files.gitbo-942F0
+
+
+[10/19/2022 15:38] 0xbepresent
+https://3six9innovatio.gitbook.io/documentation/3six9-products/the-3xcalibur-ecosystem
+
+{Embed}
+https://3six9innovatio.gitbook.io/documentation/3six9-products/the-3xcalibur-ecosystem
+The 3xcalibur Ecosystem
+The 3xcalibur Ecosytem refers to the group of future products we will integrate with The 3xcalibur Protocol.
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/https%253A%252F%252F2688442826-files.gitbo-942F0
+
+
+[10/19/2022 20:50] acegawd
+Who's available for DM? @flyjgh @Deleted User @🗡0xlancelot🗡
+
+
+[10/20/2022 09:49] caventa
+Yeah, we really need more docs
+
+
+[10/20/2022 09:50] flyjgh
+Hey sorry, I’m available for DM ser
+
+
+[10/20/2022 13:54] .mathieu
+anyone can help about this ?
+
+
+[10/20/2022 14:02] flyjgh
+Hi, `boost` is an additional amount of token that can be added to the calculated amount to be distributed every week.
+It is initially set to 0 for the first epoch, then will be considered to be increased by 0.15% of the liquidity mining target.
+
+
+[10/20/2022 14:14] .mathieu
+okay so it could be a high value since this is expressed in wei right ?
+
+
+[10/20/2022 14:15] flyjgh
+Yes, typically some value raised to 10^18
+
+
+[10/20/2022 14:15] .mathieu
+right, thank you!
+
+{Reactions}
+cyberPepeLove 
+
+[10/20/2022 15:07] ladboy233
+https://gist.github.com/Picodes/cf3f536df8cae4ed1136e6dfc8c5325a
+
+{Embed}
+https://gist.github.com/Picodes/cf3f536df8cae4ed1136e6dfc8c5325a
+c4udit_3xcalibur.md
+GitHub Gist: instantly share code, notes, and snippets.
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/gist-og-image-17482.png
+
+
+[10/20/2022 15:35] ladboy233
+In Multi-swap
+
+
+[10/20/2022 15:35] ladboy233
+```solildity
+
+    address public immutable router;
+
+    constructor(address _router) {
+        require(
+            _router != address(0),
+            "Multiswap: zero address provided in constructor"
+        );
+        router = _router;
+    }
+```
+
+
+[10/20/2022 15:36] ladboy233
+can we assume that the router that is used is
+
+
+[10/20/2022 15:36] ladboy233
+https://github.com/code-423n4/2022-10-3xcalibur/blob/main/contracts/periphery/Router.sol
+
+{Embed}
+https://github.com/code-423n4/2022-10-3xcalibur/blob/main/contracts/periphery/Router.sol
+2022-10-3xcalibur/Router.sol at main · code-423n4/2022-10-3xcalibur
+Contribute to code-423n4/2022-10-3xcalibur development by creating an account on GitHub.
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/75e17ba6-6bb9-4bf1-a3c9-711a202cc966-13445
+
+
+[10/20/2022 16:58] acegawd
+Dmed
+
+
+[10/20/2022 17:04] flyjgh
+Yep
+
+
+[10/20/2022 17:04] ladboy233
+ok
+
+
+[10/20/2022 17:37] hansfriese
+@flyjgh May I ask some questions via DM? Sent a friend request
+
+
+[10/20/2022 17:38] flyjgh
+Accepted
+
+
+[10/21/2022 06:47] supernovahs
+@flyjgh Dmed
+
+
+[10/21/2022 11:26] ladboy233
+https://3six9innovatio.gitbook.io/documentation/3six9-products/the-3xcalibur-ecosystem/what-is-3xcalibur/3xcalibur-product#lend
+
+{Embed}
+https://3six9innovatio.gitbook.io/documentation/3six9-products/the-3xcalibur-ecosystem/what-is-3xcalibur/3xcalibur-product
+3xcalibur Product
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/https%253A%252F%252F2688442826-files.gitbo-942F0
+
+
+[10/21/2022 15:04] caventa
+Has anyone found the original solidify github repository?
+
+
+[10/21/2022 15:41] Bahurum#2516
+https://github.com/mvrapidinnovation/solidly_rapid
+
+
+[10/21/2022 15:54] caventa
+Thank you very much!
+
+
+[10/21/2022 16:01] rotcivegaf
+The scope of analized  files are wrong
+In the contest the **contracts/periphery/VotingEscrow.sol** it's out of scope
+
+
+[10/21/2022 16:02] illilli000
+all findings by the tool are invalid, so I don't think that matters
+
+
+[10/21/2022 16:06] rotcivegaf
+I don't understand, so in the report I add the items mentioned in the c4dit? 
+Such as the Cache array length outside of loop or the Don't initialize variables with default value
+
+
+[10/21/2022 16:09] illilli000
+you are not supposed to include any findings that are flagged by c4udit
+
+{Reactions}
+👍 
+
+[10/21/2022 20:41] koolexc
+Heyy
+
+
+[10/21/2022 21:25] koolexc
+I receive this error when  running hardhat
+
+Error in plugin @nomiclabs/hardhat-etherscan: Etherscan API token "arbGoerliRollup" is for an unsupported network
+
+
+[10/21/2022 21:25] koolexc
+Any hint how to resolve this?
+
+
+[10/21/2022 21:26] koolexc
+I'm using this:
+npx hardhat run ./scripts/deploy.ts --network goerli
+
+
+[10/21/2022 21:27] koolexc
+@flyjgh
+
+
+[10/21/2022 21:39] koolexc
+Anyone available to give me some hint on this?
+
+
+[10/21/2022 22:01] illilli000
+I don't have the answer to your question but can I ask, what are you trying to do with the deployment? Are the tests not enough for a POC?
+
+
+[10/21/2022 22:03] koolexc
+trying to do so, because the test command with forge is failing too
+
+
+[10/21/2022 22:03] koolexc
+lib/forge-std/src/Test.sol": No such file or directory (os error 2).
+    --> "/2022-10-3xcalibur/test/BaseTest.sol"
+        "forge-std/Test.sol"
+    Check configured remappings.
+---
+
+
+[10/21/2022 22:04] koolexc
+So I was trying the deployment
+
+
+[10/21/2022 22:04] illilli000
+did you try the all-in-one command?
+
+
+[10/21/2022 22:04] koolexc
+not sure if I understand what you mean ..
+
+
+[10/21/2022 22:05] koolexc
+there is only one command from what I see
+
+
+[10/21/2022 22:05] koolexc
+Ah sorry. just noticed the all-in-one command
+
+
+[10/21/2022 22:06] koolexc
+Thanks. I think now I know what is missing
+
+
+[10/21/2022 22:06] koolexc
+will try it out
+
+{Reactions}
+👍 
+
+[10/21/2022 22:09] koolexc
+It works now.  I think I am tired overlooking stuff 🤦🏻‍♂️
+
+{Reactions}
+🫂 
+
+[10/21/2022 22:09] koolexc
+@IllIllI Thank you buddy
+
+{Reactions}
+👍 (2) 
+
+[10/22/2022 03:12] reentrant
+Hey @Koolex sorry we’re just seeing your msg rn. Glad you got it figured out.
+
+
+[10/22/2022 03:12] reentrant
+Thanks for helping out, you seem like you know a thing or two 🫶
+
+{Reactions}
+👌🏻 👍 
+
+[10/22/2022 08:35] koolexc
+All good. Thank you 🙏
+
+
+[10/23/2022 09:58] brgltd#1054
+Hi @Picodes | Angle @IllIllI 
+
+c4udit contains this item about unsafe erc20 for this contest
+
+findings for this would be considered invalid?
+
+
+[10/23/2022 10:00] illilli000
+just pasting the output of the script without analysis is invalid. if you can show that it leads to a medium/high bug with valid reasoning, it will count
+
+
+[10/23/2022 10:07] thepicodes
+Thanks @IllIllI
+
+{Reactions}
+👍 
+
+[10/23/2022 10:17] illilli000
+can you edit your question to remove the example?
+
+
+[10/23/2022 10:34] brgltd#1054
+sure, done @IllIllI
+
+{Reactions}
+thankyou (2) 
+
+[10/23/2022 18:47] rotcivegaf
+Come on.....
+The next time, send mp
+
+
+[10/23/2022 20:02] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens  The **3xcalibur **contest is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a gardener if you have questions along the way!
+
+{Reactions}
+4739_Skeletor 👏 (2) 
+
+[10/23/2022 22:04] 0xbepresent
+Nice project guys!
+
+{Reactions}
+cyberPepeLove (6) 
+
+[10/24/2022 01:56] chaduke3730
+first time submission for me
+
+{Reactions}
+hi5 (10) 
+
+[11/21/2022 00:47] xyzbtchunt
+when will the announcement appear?
+
+
+[11/23/2022 13:28] bulej93
+https://github.com/code-423n4/code423n4.com/pull/5632/commits/da3d4be72e0497739c5d4b4c6940821d0a21c2a6
+
+{Embed}
+https://github.com/code-423n4/code423n4.com/pull/5632/commits/da3d4be72e0497739c5d4b4c6940821d0a21c2a6
+Add contest results by CloudEllie · Pull Request #5632 · code-423n4...
+Code4rena - ARCHIVE-2022 - 3xcalibur-oct18 [1031611665462079548].txt_Files/84729667-C9F7E
+
+{Reactions}
+👍 C4Keycap 
+
+[11/23/2022 14:13] ladboy233
+👆
+
+
+[11/23/2022 14:14] .satyam_
+what is meant by Q-50,q,1,131.92665412382766,52,2.5370510408428397,34.98189915607817,USDC,34.98
+
+
+[11/23/2022 14:14] .satyam_
+particularly this: q,1,131.92665412382766,52,2.5370510408428397,34.98189915607817,USDC,34.98
+
+
+[11/23/2022 14:18] ladboy233
+m-08 payout is 0？
+
+
+[11/23/2022 14:19] cloudellie
+Please be patient, we are running QA checks -- hence the PR not having been merged yet.
+
+
+[11/23/2022 14:48] cloudellie
+Here's what I'm seeing (with the caveat that QA checks are still running): 24 wardens found M-08, and this contest's awards were calculated using the 0.6 decrementer. So yes, I believe this is correct. You can see the actual number as the third-to-last value in the csv rows: `0.0005584570954127158`
+
+It rounds out to 0.
+
+
+[11/23/2022 14:51] cloudellie
+column headings can be seen at the top of the csv file: 
+
+`contest,handle,finding,risk,score,pie,split,slice,award,awardCoin,awardUSD`
+
+The shares/pie/split/slice stuff is described here: https://docs.code4rena.com/awarding/incentive-model-and-awards
+
+We need to update our docs to incorporate some more context around how scoring works, but you can read about that here: https://github.com/code-423n4/org/discussions/50
+
+{Reactions}
+👍 
+
+[11/23/2022 20:54] itsmetechjay
+🤑 🎉 Awards for **3xcalibur**: 
+
+$24,368.73 USDC » @0x52 
+$3,707.35 USDC » @Alex The Entreprenerd 
+$2,263.49 USDC » @minhtrng 
+$2,247.23 USDC » @0xNazgul 
+$2,212.24 USDC » @codexploder 
+$2,206.31 USDC » @Chom 
+$1,429.57 USDC » @Rotcivegaf 
+$935.69 USDC » @__141345__ 
+$796.94 USDC » @Rolezn 
+$696.87 USDC » @d3e4 
+$661.89 USDC » @0xladboy | Sparkware 
+$588.62 USDC » @Dravee 
+$570.47 USDC » @0xSmartContract 
+$555.44 USDC » @hansfriese 
+$509.15 USDC » @ayeslick 
+$446.90 USDC » @0xmatt 
+$446.90 USDC » @c3phas 
+$411.28 USDC » @ajtra 
+$411.28 USDC » @ch0bu 
+$411.28 USDC » @ReyAdmirado 
+$383.25 USDC » @code-cipher 
+$266.67 USDC » @lukris02 
+$264.76 USDC » @PaludoX0 
+$214.97 USDC » @cccz 
+$203.66 USDC » @fs0c 
+$156.37 USDC » @peanuts 
+$135.64 USDC » @ctf_sec 
+$119.68 USDC » @cryptonue 
+$119.14 USDC » @bitsurfer 
+$93.36 USDC » @imare 
+$63.01 USDC » @RaymondFam 
+$63.01 USDC » @TomJ 
+$63.01 USDC » @0xRoxas 
+$63.01 USDC » @B2 
+$63.01 USDC » @Bnke 
+$63.01 USDC » @RedOneN 
+$63.01 USDC » @sakman 
+$63.01 USDC » @saneryee 
+$63.01 USDC » Shinchan (@Sm4rty, @Prasant Gupta, @Rohan)
+$63.01 USDC » @tnevler 
+$52.23 USDC » @wagmi 
+$51.40 USDC » @bin2chen 
+$43.99 USDC » @joestakey 
+$43.99 USDC » @horsefacts 
+$36.69 USDC » @pcarranzav 
+$34.98 USDC » @0x5rings 
+$34.98 USDC » @brgltd 
+$34.98 USDC » @rbserver 
+$34.98 USDC » mics
+$34.98 USDC » @0x1f8b 
+$34.98 USDC » @0xbepresent 
+$34.98 USDC » @Aphak5010 
+$34.98 USDC » @bobirichman7542 
+$34.98 USDC » @catwhiskeys 
+$34.98 USDC » @chrisdior4 
+$34.98 USDC » @cylzxje 
+$34.98 USDC » @delfin454000 
+$34.98 USDC » @djxploit 
+$34.98 USDC » @ElKu 
+$34.98 USDC » @EricTee 
+$34.98 USDC » @Funen 
+$34.98 USDC » @gogo 
+$34.98 USDC » @Josiah 
+$34.98 USDC » @karanctf 
+$34.98 USDC » KoKo
+$34.98 USDC » @0xwhiteDevil 
+$34.98 USDC » @malinariy 
+$34.98 USDC » @martin | Founder @ ShieldifySec 
+$34.98 USDC » @mcwildy 
+$34.98 USDC » @Rahoz 
+$34.98 USDC » @sikorico 
+$34.98 USDC » @slowmoses 
+$34.98 USDC » @svskaushik 
+$34.98 USDC » @Waze 
+$34.98 USDC » @ych18 
+$28.03 USDC » @Awesome 
+$28.03 USDC » @DimSon 
+$28.03 USDC » @exolorkistis 
+$28.03 USDC » @Mathieu 
+$28.03 USDC » @peiw 
+$28.03 USDC » @vnmrtz.eth 
+$28.03 USDC » @Satyam_Sharma 
+$11.31 USDC » @dddDD 
+$11.31 USDC » @8olidity 
+$11.31 USDC » @Pedroais 
+$5.94 USDC » @cryptostellar5 
+$5.94 USDC » @pashov 
+$5.94 USDC » @supernova 
+$2.22 USDC » KIntern_NA (@TrungOre, @duc)
+$1.71 USDC » M4TZ1P (@DekaiHako, @holyhansss_kr, @Zer0Luck, @AAIIWITF, @PENGUN )
+$1.71 USDC » @corerouter 
+$1.71 USDC » @SooYa 
+$1.71 USDC » V_B (@Barichek, @Vlad B | zkSync)
+
+🏁 Findings summary
+---------------------------
+High risk findings: 3 total, 3 unique
+Med risk findings: 82 total, 19 unique
+Gas optimization: 30
+QA reports: 61
+
+Awards will be distributed on Polygon within the next 1-2 weeks. Congratulations all! 💸 💸 💸
+
+{Reactions}
+🎉 (10) peepoeyes (7) chefskiss (5) badgerchad (5) cheers_badger (5) __ (8) cyberheart (2) 3️⃣ 🇽 
+
+[11/23/2022 20:54] itsmetechjay
+*Note: If you participated in this contest and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+
+[11/24/2022 03:31] gianganhnguyen#9407
+Can we see report comments? I submitted gas and QA report, don't see my name
+
+
+[11/24/2022 07:57] dsubd1subd2
+yeeeeeah
+
+
+[12/17/2022 02:28] catwhiskeys
+Hi, has anyone already received these payouts?
+
+
+[12/17/2022 02:30] catwhiskeys
+I checked my metamask today (yes, I've imported polygon network) and there are no payments(
+
+
+[12/17/2022 03:34] cryptostaker
+yes, received. Did you add the USDC address on your polygon network?
+
+
+[12/17/2022 03:41] bit.surfer
+maybe wrong wallet? check the 0x53f...081 wallet
+
+{Reactions}
+👍 (2) 
+
+[12/17/2022 14:29] catwhiskeys
+Thank you so much! The problem was I had USDT not USDC. Now it worked!!
+
+{Reactions}
+👍 (2) 
+
+==============================================================
+Exported 101 message(s)
+==============================================================
